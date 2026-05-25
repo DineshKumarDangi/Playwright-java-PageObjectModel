@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  seleniumHub:
+    image: selenium/hub:latest
+    container_name: seleniumHub
+    
+    ports:
+      - "4445:4444"     # HTTP
+      - "4442:4442"     # Event Bus XPUB
+      - "4443:4443"     # Event Bus XSUB
+
+  chromeNode:
+    image: selenium/node-chrome:4.44.0
+    shm_size: 2gb
+    depends_on:
+      - seleniumHub
+    environment:
+      - SE_EVENT_BUS_HOST=seleniumHub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSION=3
+      - SE_NODE_OVERRIDE_MAX_SESSION=true
+      - SE_NODE_GRID_URL=http://localhost:4445/
+      
+  chromiumNode:
+    image: selenium/node-chromium:4.44.0
+    shm_size: 2gb
+    depends_on:
+    - seleniumHub
+    environment:
+    - SE_EVENT_BUS_HOST=seleniumHub
+    - SE_EVENT_BUS_PUBLISH_PORT=4442
+    - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    - SE_NODE_MAX_SESSION=3
+    - SE_NODE_OVERRIDE_MAX_SESSION=true
+    - SE_NODE_GRID_URL=http://localhost:4445/
+
+  firefoxNode:
+    image: selenium/node-firefox:4.44.0
+    shm_size: 2gb
+    depends_on:
+      - seleniumHub
+    environment:
+      - SE_EVENT_BUS_HOST=seleniumHub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSION=3
+      - SE_NODE_OVERRIDE_MAX_SESSION=true
+      - SE_NODE_GRID_URL=http://localhost:4445/
+
+  edgeNode:
+    image: selenium/node-edge:4.44.0
+    shm_size: 2gb
+    depends_on:
+      - seleniumHub
+    environment:
+      - SE_EVENT_BUS_HOST=seleniumHub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSION=3
+      - SE_NODE_OVERRIDE_MAX_SESSION=true
+      - SE_NODE_GRID_URL=http://localhost:4445/
