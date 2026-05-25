@@ -1,7 +1,6 @@
 package com.qa.opencart.database;
 
 import com.microsoft.playwright.*;
-import org.testng.Assert;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class SwiftMessageTest {

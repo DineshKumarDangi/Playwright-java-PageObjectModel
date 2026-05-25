@@ -2,7 +2,6 @@ package com.qa.opencart.tests;
 
 import base.BaseTest;
 import com.qa.opencart.constants.AppConstants;
-import com.qa.opencart.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
