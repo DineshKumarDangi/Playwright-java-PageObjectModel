@@ -30,10 +30,10 @@ public class BaseTest {
         page = pf.initBrowser(prop);
         homePage = new HomePage(page);
     }
-/*
+
     @AfterTest
     public void tearDown() {
 
       page.context().browser().close();
-    } */
+    }
 }
