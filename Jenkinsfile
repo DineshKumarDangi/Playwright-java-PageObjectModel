@@ -46,7 +46,7 @@ pipeline
                          allowMissing: false,
                          alwaysLinkToLastBuild: false,
                          keepAll: true,
-                         reportDir: 'build',
+                         reportDir: 'target',
                          reportFiles: 'TestExecutionReport.html',
                          reportName: 'HTML Extent Report',
                          reportTitles: ''
