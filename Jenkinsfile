@@ -34,7 +34,7 @@ pipeline
         stage('Regression Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git branch: 'main', url: 'https://github.com/DineshKumarDangi/Playwright-java-PageObjectModel'
+                    git branch: 'master', url: 'https://github.com/DineshKumarDangi/Playwright-java-PageObjectModel'
                     bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regressions.xml"
                 }
             }
@@ -45,9 +45,9 @@ pipeline
                      publishHTML([allowMissing: false,
                                   alwaysLinkToLastBuild: false,
                                   keepAll: true,
-                                  reportDir: 'build',
+                                  reportDir: 'target',   // adjust to actual folder
                                   reportFiles: 'TestExecutionReport.html',
-                                  reportName: 'HTML Extent Report',
+                                  reportName: 'HTML Extent Report'
                                   reportTitles: ''])
             }
         }
