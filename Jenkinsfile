@@ -5,6 +5,12 @@ pipeline
     tools{
     	maven 'maven'
         }
+    stage('Debug Files') {
+        steps {
+            bat 'dir src\\test\\resources\\testrunners'
+            bat 'type src\\test\\resources\\testrunners\\testng_regressions.xml'
+        }
+    }
 
     stages
     {
