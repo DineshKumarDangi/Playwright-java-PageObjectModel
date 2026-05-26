@@ -42,13 +42,15 @@ pipeline
 
         stage('Publish Extent Report'){
             steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false,
-                                  keepAll: true,
-                                  reportDir: 'target',   // adjust to actual folder
-                                  reportFiles: 'TestExecutionReport.html',
-                                  reportName: 'HTML Extent Report'
-                                  reportTitles: ''])
+                     publishHTML([
+                         allowMissing: false,
+                         alwaysLinkToLastBuild: false,
+                         keepAll: true,
+                         reportDir: 'build',
+                         reportFiles: 'TestExecutionReport.html',
+                         reportName: 'HTML Extent Report',
+                         reportTitles: ''
+                     ])
             }
         }
     }
