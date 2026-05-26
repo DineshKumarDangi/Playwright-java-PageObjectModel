@@ -26,8 +26,8 @@
 <!--            <class name="com.qa.opencart.tests.HomePageTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
-    <test name="Open Cart Login Page Test edge">
-        <parameter name="browser" value="edge"/>
+    <test name="Open Cart Login Page Test chromium">
+        <parameter name="browser" value="chromium"/>
         <classes>
             <class name="com.qa.opencart.tests.LoginPageTest"/>
         </classes>
