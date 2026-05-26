@@ -12,20 +12,18 @@ pipeline
         {
             steps
             {
-                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                 git branch: 'main', url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             post
             {
                 success
                 {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
                 }
             }
         }
-
-
 
         stage("Deploy to QA"){
             steps{
@@ -36,13 +34,11 @@ pipeline
         stage('Regression Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/DineshKumarDangi/Playwright-java-PageObjectModel'
-                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regressions.xml"
-
+                    git branch: 'main', url: 'https://github.com/DineshKumarDangi/Playwright-java-PageObjectModel'
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regressions.xml"
                 }
             }
         }
-
 
         stage('Publish Extent Report'){
             steps{
